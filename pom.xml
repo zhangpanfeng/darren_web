@@ -13,22 +13,60 @@
     </properties>
 
     <dependencies>
+        <!-- 项目依赖 -->
         <dependency>
             <groupId>darren.comm</groupId>
             <artifactId>darren_comm</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
+        <!-- springMVC -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        <!-- mybatis -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.2.8</version>
+        </dependency>
+        <!-- Spring和Mybatis结合 -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>1.2.2</version>
+        </dependency>
+        <!-- 数据库连接 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.34</version>
+        </dependency>
 
     </dependencies>
 
+
     <build>
         <finalName>darren_web</finalName>
+        <!-- <pluginManagement> <plugins> <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>tomcat-maven-plugin</artifactId> 
+            <version>1.1</version> </plugin> </plugins> </pluginManagement> -->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <server>myServer</server>
+                    <username>admin</username>
+                    <password>admin</password>
+                    <url>http://localhost:8888/manager/text</url>
+                    <contextReloadable>true</contextReloadable>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
+
+
 
 </project>

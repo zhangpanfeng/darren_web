@@ -1,6 +1,10 @@
-package com.darren.web.po;
+package com.darren.web.user.po;
 
 public class User {
+    /**
+     * 用户ID
+     */
+    private String id;
     /**
      * 用户名
      */
@@ -9,6 +13,14 @@ public class User {
      * 密码
      */
     private String password;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getUserName() {
         return userName;
