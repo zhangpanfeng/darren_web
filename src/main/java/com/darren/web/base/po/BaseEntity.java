@@ -6,11 +6,11 @@ public class BaseEntity {
     /**
      * 创建时间
      */
-    private Date createTime;
+    protected Date createTime;
     /**
      * 更新时间
      */
-    private Date updateTime;
+    protected Date updateTime;
 
     public Date getCreateTime() {
         return createTime;

@@ -63,7 +63,6 @@ public class BaseDao {
     protected <T> List<T> readAllEntitys(String key) throws BusinessException {
         List<T> result = null;
         try {
-            sqlSession = null;
             result = this.sqlSession.selectList(key);
         } catch (Exception e) {
             e.printStackTrace();

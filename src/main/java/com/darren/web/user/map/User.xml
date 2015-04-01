@@ -5,9 +5,30 @@
         <id column="USER_ID" property="id" jdbcType="VARCHAR" />
         <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
         <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
     </resultMap>
 
     <select id="readAllUsers" resultMap="BaseResultMap">
         select * from USER
+    </select>
+
+    <insert id="createUser" parameterType="com.darren.web.user.po.User">
+        insert into USER
+        (USER_ID, USER_NAME, PASSWORD,
+        CREATE_TIME)
+        values (#{id,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR},
+        #{password,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    
+    <!-- 根据用户名查或根据用户名和密码查 -->
+    <select id="readUserByParams" resultMap="BaseResultMap" parameterType="java.util.Map">
+        select * from USER
+        where USER_NAME = #{userName} and
+        <if test="#{password} != null">
+            PASSWORD = #{password} and
+        </if>
+        1 = 1
     </select>
 </mapper>

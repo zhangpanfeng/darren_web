@@ -3,9 +3,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>welcome page</title>
+<title>欢迎页</title>
 </head>
 <body>
-    <h1>Welcome ${user.userName} Login!</h1>
+    <h1 align="center">欢迎 ${user.userName} 登陆!</h1>
 </body>
 </html>
