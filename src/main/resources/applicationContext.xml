@@ -13,7 +13,11 @@ http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
 
     <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
     <context:annotation-config />
-    <context:component-scan base-package="com.darren.web"></context:component-scan>
+
+    <!-- 自动扫描组件，这里要把controler下面的 controller去除，他们是在spring3-servlet.xml中配置的，如果不去除会影响事务管理的。 -->
+    <context:component-scan base-package="com.darren.web">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
 
     <!-- 引入配置文件 -->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -44,6 +48,9 @@ http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
         <constructor-arg index="0" ref="sqlSessionFactory" />
     </bean>
 
+    <!-- spring统一异常处理拦截器 -->
+    <bean id="exceptionHandler" class="com.darren.web.exception.ExceptionHandler" />
+
     <!-- 配置事务管理器 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
@@ -55,10 +62,10 @@ http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
     <!-- 拦截器方式配置事物 -->
     <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
         <tx:attributes>
-            <tx:method name="create*" propagation="REQUIRED"  rollback-for="Exception"/>
-            <tx:method name="update*" propagation="REQUIRED"  rollback-for="Exception"/>
-            <tx:method name="delete*" propagation="REQUIRED"  rollback-for="Exception"/>
-            <tx:method name="read*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="create*" propagation="REQUIRED" rollback-for="Exception" />
+            <tx:method name="update*" propagation="REQUIRED" rollback-for="Exception" />
+            <tx:method name="delete*" propagation="REQUIRED" rollback-for="Exception" />
+            <tx:method name="read*" propagation="SUPPORTS" read-only="true" />
         </tx:attributes>
     </tx:advice>
     <aop:config>

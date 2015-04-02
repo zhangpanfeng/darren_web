@@ -3,16 +3,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Refresh" content="5;url=${clientMessage.href}">
 <title>错误</title>
 </head>
 <body>
     <table align="center">
         <tr>
-            <td align="center"><h1>${clientMessage.message}</h1></td>
+            <td align="right"><h2>异常代码：</h2></td>
+            <td align="left"><h2>${clientMessage.errorCode}</h2></td>
         </tr>
         <tr>
-            <td>页面5秒钟之后跳转到【${clientMessage.target}】，如果没有跳转，请点击此链接<a href="${clientMessage.href}">【${clientMessage.target}】</a></td>
+            <td align="right"><h2>异常消息：</h2></td>
+            <td align="left"><h2>${clientMessage.message}</h2></td>
         </tr>
     </table>
 </body>
