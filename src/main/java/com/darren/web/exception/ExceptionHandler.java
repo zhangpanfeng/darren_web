@@ -13,6 +13,7 @@ import com.darren.comm.vo.ClientMessage;
 public class ExceptionHandler implements HandlerExceptionResolver {
 
     public ModelAndView resolveException(HttpServletRequest req, HttpServletResponse rep, Object obj, Exception e) {
+        e.printStackTrace();
         BusinessException exception = (BusinessException) e;
         ClientMessage clientMessage = new ClientMessage();
         clientMessage.setErrorCode(exception.getErrorCode());

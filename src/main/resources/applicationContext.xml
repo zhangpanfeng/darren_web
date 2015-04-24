@@ -24,6 +24,7 @@ http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
         <property name="locations">
             <list>
                 <value>classpath*:jdbc.properties</value>
+                <value>classpath*:const.properties</value>
             </list>
         </property>
     </bean>
@@ -72,4 +73,6 @@ http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
         <aop:pointcut id="transactionPointcut" expression="execution(* com.darren.web..*.*ServiceImpl.*(..))" />
         <aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
     </aop:config>
+
+    <import resource="classpath*:applicationContext-web-remote.xml" />
 </beans>
